@@ -1,0 +1,15 @@
+E:\ProjectsBag\Coding\CarShopDigital\CarShopDigital\bin\Debug\net9.0\CarShopDigital.exe
+E:\ProjectsBag\Coding\CarShopDigital\CarShopDigital\bin\Debug\net9.0\CarShopDigital.deps.json
+E:\ProjectsBag\Coding\CarShopDigital\CarShopDigital\bin\Debug\net9.0\CarShopDigital.runtimeconfig.json
+E:\ProjectsBag\Coding\CarShopDigital\CarShopDigital\bin\Debug\net9.0\CarShopDigital.dll
+E:\ProjectsBag\Coding\CarShopDigital\CarShopDigital\bin\Debug\net9.0\CarShopDigital.pdb
+E:\ProjectsBag\Coding\CarShopDigital\CarShopDigital\obj\Debug\net9.0\CarShopDigital.GeneratedMSBuildEditorConfig.editorconfig
+E:\ProjectsBag\Coding\CarShopDigital\CarShopDigital\obj\Debug\net9.0\CarShopDigital.AssemblyInfoInputs.cache
+E:\ProjectsBag\Coding\CarShopDigital\CarShopDigital\obj\Debug\net9.0\CarShopDigital.AssemblyInfo.cs
+E:\ProjectsBag\Coding\CarShopDigital\CarShopDigital\obj\Debug\net9.0\CarShopDigital.csproj.CoreCompileInputs.cache
+E:\ProjectsBag\Coding\CarShopDigital\CarShopDigital\obj\Debug\net9.0\CarShopDigital.sourcelink.json
+E:\ProjectsBag\Coding\CarShopDigital\CarShopDigital\obj\Debug\net9.0\CarShopDigital.dll
+E:\ProjectsBag\Coding\CarShopDigital\CarShopDigital\obj\Debug\net9.0\refint\CarShopDigital.dll
+E:\ProjectsBag\Coding\CarShopDigital\CarShopDigital\obj\Debug\net9.0\CarShopDigital.pdb
+E:\ProjectsBag\Coding\CarShopDigital\CarShopDigital\obj\Debug\net9.0\CarShopDigital.genruntimeconfig.cache
+E:\ProjectsBag\Coding\CarShopDigital\CarShopDigital\obj\Debug\net9.0\ref\CarShopDigital.dll
