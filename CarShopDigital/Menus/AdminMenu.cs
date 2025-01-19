@@ -17,8 +17,7 @@ namespace CarShopDigital.Menus
             Console.WriteLine("4. Exit");
             Console.WriteLine("==================================");
             Console.Write("Select an option: ");
-            
-            string choice = Console.ReadLine();
+            string choice = Console.ReadLine() ?? string.Empty;
             switch (choice)
             {
                 case "1":

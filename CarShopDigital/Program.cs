@@ -1,11 +1,13 @@
-﻿using System;
+﻿using CarShopDigital.Menus;
+using CarShopDigital.Models;
+using CarShopDigital.Utils;
 
 namespace CarShopDigital
 {
 
-    class Program
+    public class Program
     {
-        static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             Console.Clear();
             Console.WriteLine("Welcome to Car Shop Digital!");
@@ -16,7 +18,7 @@ namespace CarShopDigital
             Console.WriteLine("==================================");
             Console.Write("Please select an option: ");
 
-            string choice = Console.ReadLine();
+            string choice = Console.ReadLine() ?? string.Empty;
 
             switch (choice)
             {
@@ -24,7 +26,7 @@ namespace CarShopDigital
                     AdminLogin();
                     break;
                 case "2":
-                    CustomerLogin();
+                    await CustomerLogin();
                     break;
                 case "3":
                     Console.WriteLine("Goodbye!");
@@ -32,25 +34,27 @@ namespace CarShopDigital
                     break;
                 default:
                     Console.WriteLine("Invalid option!, Please try again.");
-                    Main(args);
+                    await Main(args);
                     break;
             }
         }
 
-        static void AdminLogin()
+        public static void AdminLogin()
         {
             Console.Clear();
             Console.Write("Enter admin username: ");
-            string adminUsername = Console.ReadLine();
+            string adminUsername = Console.ReadLine() ?? string.Empty;
 
             Console.Write("Enter admin password: ");
-            string adminPassword = Console.ReadLine();
+            string adminPassword = Console.ReadLine() ?? string.Empty;
 
             // TODO: Basic Authentication (TODO: Implement proper authentication using AuthService)
             if (adminUsername == "admin" && adminPassword == "admin")
             {
                 Console.WriteLine("Welcome Admin!");
                 // TODO: move to admin menu
+                AdminMenu adminMenu = new AdminMenu();
+                adminMenu.ShowMenu();
             }
             else
             {
@@ -59,25 +63,47 @@ namespace CarShopDigital
             }
         }
 
-        static void CustomerLogin()
+        static async Task CustomerLogin()
         {
             Console.Clear();
             Console.Write("Enter customer ID: ");
-            string customerID = Console.ReadLine();
+            int customerID = int.Parse(Console.ReadLine() ?? string.Empty);
 
             Console.Write("Enter customer password: ");
-            string customerPassword = Console.ReadLine();
+            string customerPassword = Console.ReadLine() ?? string.Empty;
 
-            // TODO: Basic Authentication (TODO: Implement proper authentication using AuthService)
-            if (!string.IsNullOrEmpty(customerID) && !string.IsNullOrEmpty(customerPassword))
+            if (Functions.ValidateId(customerID) && Functions.ValidatePassword(customerPassword))
             {
-                Console.WriteLine($"Welcome Customer {customerID}!");
-                // TODO: move to customer menu
+                string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "..", "..", "Data", "users.json");
+                if (!File.Exists(filePath))
+                {
+                    Console.WriteLine($"File not found: {filePath}");
+                    return;
+                }
+
+                List<Customer> customers = await JsonFileHandler.ReadFromJson<List<Customer>>(filePath) ?? new List<Customer>();
+
+                var existingCustomer = customers.FirstOrDefault(c => c.Id == customerID);
+
+                if (existingCustomer == null)
+                {
+                    Console.WriteLine("New customer detected. Creating account...");
+                    Console.Write("Enter your full name: ");
+                    string fullName = Console.ReadLine() ?? string.Empty;
+                    var newCustomer = new Customer(fullName, customerID, customerPassword);
+                    customers.Add(newCustomer);
+                    await JsonFileHandler.WriteToJson(filePath, customers);
+                    Console.WriteLine("Account created successfully!");
+                }
+
+                // CustomerMenu customerMenu = new CustomerMenu(customerID);
+                // customerMenu.ShowMenu();
+
             }
             else
             {
                 Console.WriteLine("Invalid ID or password, Please try again.");
-                CustomerLogin();
+                await CustomerLogin();
             }
         }
     }
